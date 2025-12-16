@@ -77,7 +77,7 @@ public class UserServiceImpl implements IUserService {
 
 	}
 
-	@Override
+	/*@Override
 	public User retrieveUser(String id) {
 		User u = null;
 		try {
@@ -87,7 +87,18 @@ public class UserServiceImpl implements IUserService {
 		}
 
 		return u;
-	}
+	}*/
+	@Override
+public User retrieveUser(String id) {
+    try {
+        return userRepository.findById(Long.parseLong(id)).orElse(null);
+    } catch (NumberFormatException e) {
+        // ID pas valide
+        e.printStackTrace();
+        return null;
+    }
+}
+
 
 	
 	

@@ -1,8 +1,7 @@
 package tn.esprit.spring.entities;
-
+import java.util.Date;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 @Entity
 @Table(name = "T_USER")
 public class User implements Serializable {

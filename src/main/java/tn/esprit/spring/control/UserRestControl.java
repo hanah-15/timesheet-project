@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import tn.esprit.spring.entities.User;
 import tn.esprit.spring.services.IUserService;
+import org.springframework.http.ResponseEntity;
+
 
 // userRestControl
 @RestController // = @Controller + @ResponseBody 
@@ -26,10 +28,21 @@ public class UserRestControl {
 	}
  
 	// http://localhost:????/timesheet-devops/retrieve-user/{user-id}
-	@GetMapping("/retrieve-user/{user-id}")
+	/*@GetMapping("/retrieve-user/{user-id}")
 	public User retrieveUser(@PathVariable("user-id") String userId) {
 		return userService.retrieveUser(userId);
-	}
+	}*/
+	@GetMapping("/retrieve-user/{user-id}")
+    public ResponseEntity<User> retrieveUser(@PathVariable("user-id") String userId) {
+    User u = userService.retrieveUser(userId);
+
+    if (u == null) {
+        return ResponseEntity.notFound().build(); // renvoie 404 si l'utilisateur n'existe pas
+    }
+
+    return ResponseEntity.ok(u); // renvoie 200 OK avec le User en JSON
+}
+
 	
 	 
 
